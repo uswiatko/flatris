@@ -19,6 +19,7 @@ add_executable(${CMAKE_PROJECT_NAME}
                 #Entry
                 src/main.cpp
                 #Rest
+                src/blocks/tetris_block.cpp
                 src/map/tetris_map.cpp
                 src/tetris_game.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME}
@@ -27,3 +28,5 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 
 target_compile_options(${CMAKE_PROJECT_NAME} PUBLIC ${COMPILER_FLAGS})
 
+set_property(TARGET ${CMAKE_PROJECT_NAME}
+    PROPERTY CXX_STANDARD 17)

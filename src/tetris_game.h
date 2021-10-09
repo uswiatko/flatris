@@ -12,10 +12,12 @@ class TetrisGame {
         void key_pressed(SDL_Keycode key);
         void loop();
         void render(SDL_Renderer *renderer);
+        int set_new_active();
 
     private:
         TetrisMap _map;
         int _w, _h;
+        int _game_speed = 10;
 };
 
 #endif
