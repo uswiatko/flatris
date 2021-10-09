@@ -19,6 +19,7 @@ add_executable(${CMAKE_PROJECT_NAME}
                 #Entry
                 src/main.cpp
                 #Rest
+                src/map/tetris_map.cpp
                 src/tetris_game.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME}
                 ${SDL2_LIBRARIES}

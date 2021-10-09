@@ -8,6 +8,7 @@
 
 static const int SCREEN_H = 800;
 static const int SCREEN_W = 400;
+static const int BLOCK_SIZE = 40;
 static const char *SCREEN_NAME = "flatris v0";
 
 const std::chrono::milliseconds MS_PER_FRAME = std::chrono::milliseconds(25);
@@ -15,6 +16,8 @@ const std::chrono::milliseconds MS_PER_FRAME = std::chrono::milliseconds(25);
 static void _render_screen(SDL_Renderer *renderer, TetrisGame &game)
 {
     SDL_RenderClear(renderer);
+
+    game.render(renderer);
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
@@ -53,7 +56,7 @@ int main(int argc, char *argv[])
     SDL_Renderer *_renderer = SDL_CreateRenderer(_window, -1,
             SDL_RENDERER_SOFTWARE);
 
-    TetrisGame game = TetrisGame(SCREEN_W, SCREEN_H);
+    TetrisGame game = TetrisGame(SCREEN_W, SCREEN_H, BLOCK_SIZE);
 
     while (1) {
         if (_process_events(game))

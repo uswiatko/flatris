@@ -1,7 +1,7 @@
 #include "tetris_game.h"
 
-TetrisGame::TetrisGame(int w, int h)
-    : _w(w), _h(h)
+TetrisGame::TetrisGame(int w, int h, int block)
+    : _w(w), _h(h), _map(TetrisMap(block))
 {
 }
 
@@ -29,5 +29,5 @@ void TetrisGame::loop()
 
 void TetrisGame::render(SDL_Renderer *renderer)
 {
-
+    _map.render(renderer);
 }
