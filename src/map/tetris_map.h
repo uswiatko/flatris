@@ -15,11 +15,15 @@ class TetrisMap {
 
         int insert(TetrisBlock &block);
         int move(TetrisBlock &block, int x, int y);
+        int rotate(TetrisBlock &block);
+
+        int find_full(TetrisBlock &block);
+        void clear();
 
         std::array<std::array<int, 10>, 20> loc;
 
     private:
-        void clear();
+        void delete_full(int start, int &points);
 
         int _block_size;
 };

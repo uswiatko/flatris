@@ -18,6 +18,8 @@ class TetrisGame {
         TetrisMap _map;
         int _w, _h;
         int _game_speed = 10;
+        int _points = 0;
+        bool _blocked;
 };
 
 #endif

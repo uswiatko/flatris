@@ -43,6 +43,9 @@ int TetrisGame::set_new_active()
 
 void TetrisGame::key_pressed(SDL_Keycode key)
 {
+    if (_blocked)
+        return;
+
     switch(key)
     {
     case SDLK_RIGHT:
@@ -51,23 +54,41 @@ void TetrisGame::key_pressed(SDL_Keycode key)
     case SDLK_LEFT:
         _map.move(active, 0, -1);
         break;
-    case SDLK_UP:
-        break;
     case SDLK_DOWN:
+        _blocked = true;
         break;
-    case SDLK_d:
+    case SDLK_r:
+        _map.rotate(active);
         break;
     }
+}
+
+static int _points_to_game_speed(int points)
+{
+    std::cout << points << "\n";
+    if (points < 100)
+        return 10 - (points / 10);
+    return 1;
 }
 
 void TetrisGame::loop()
 {
     static int loop_cnt;
 
-    if (loop_cnt++ > _game_speed) {
+    if (loop_cnt++ > _game_speed || _blocked) {
         if (_map.move(active, 1, 0)) {
-            if (set_new_active())
-                std::cout << "End game";
+            _blocked = false;
+
+            if (set_new_active()) {
+                std::cout << "End game,  result is " << _points << "\n";
+                _map.clear();
+                set_new_active();
+                _game_speed = 10;
+                _points = 0;
+            }
+
+            _points += _map.find_full(active);
+            _game_speed = _points_to_game_speed(_points);
         }
         loop_cnt = 0;
     }
