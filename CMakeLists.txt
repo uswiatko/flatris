@@ -6,6 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
+find_package(SDL2TTF REQUIRED)
 
 set(COMPILER_FLAGS
     "-g3"
@@ -20,10 +21,12 @@ add_executable(${CMAKE_PROJECT_NAME}
                 src/main.cpp
                 #Rest
                 src/blocks/tetris_block.cpp
+                src/text/text_manager.cpp
                 src/map/tetris_map.cpp
                 src/tetris_game.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME}
                 ${SDL2_LIBRARIES}
+                ${SDL2TTF_LIBRARY}
                 ${SDL2_IMAGE_LIBRARIES})
 
 target_compile_options(${CMAKE_PROJECT_NAME} PUBLIC ${COMPILER_FLAGS})

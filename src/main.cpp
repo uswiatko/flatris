@@ -4,10 +4,11 @@
 #include <iostream>
 #include <thread>
 
+#include "text/text_manager.h"
 #include "tetris_game.h"
 
 static const int SCREEN_H = 800;
-static const int SCREEN_W = 400;
+static const int SCREEN_W = 600;
 static const int BLOCK_SIZE = 40;
 static const char *SCREEN_NAME = "flatris v0";
 
@@ -17,7 +18,7 @@ static void _render_screen(SDL_Renderer *renderer, TetrisGame &game)
 {
     SDL_RenderClear(renderer);
 
-    game.render(renderer);
+    game.render();
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
@@ -56,7 +57,7 @@ int main(int argc, char *argv[])
     SDL_Renderer *_renderer = SDL_CreateRenderer(_window, -1,
             SDL_RENDERER_SOFTWARE);
 
-    TetrisGame game = TetrisGame(SCREEN_W, SCREEN_H, BLOCK_SIZE);
+    TetrisGame game = TetrisGame(SCREEN_W, SCREEN_H, BLOCK_SIZE, _renderer);
 
     while (1) {
         if (_process_events(game))

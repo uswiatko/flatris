@@ -13,7 +13,7 @@ class TetrisMap {
 
         void render(SDL_Renderer *renderer);
 
-        int insert(TetrisBlock &block);
+        int insert_new(TetrisBlock &block);
         int move(TetrisBlock &block, int x, int y);
         int rotate(TetrisBlock &block);
 
@@ -24,8 +24,11 @@ class TetrisMap {
 
     private:
         void delete_full(int start, int &points);
+        void move_shadow(TetrisBlock &block);
+        int insert(TetrisBlock &block);
 
         int _block_size;
+        TetrisBlock _shadow;
 };
 
 #endif
